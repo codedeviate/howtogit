@@ -39,10 +39,18 @@ entire file system at a moment in time.
 timestamp, and a human-readable message. Crucially, every commit also points
 to its parent commit(s). That chain of parents is the project history.
 
-**Ref (reference)** — a human-readable name — `main`, `feature/login`,
-`v1.4.0` — that points to a specific commit hash. A tag is a ref that never
-moves. A branch is a ref that advances automatically when you make a new commit
-on it.
+**Tag** — an *annotated tag object*: a permanent pointer to a commit (usually
+a release) together with its own metadata — the tagger, a date, a message, and
+an optional GPG signature. Like the other three, it lives in `.git/objects/`.
+
+Those four — blob, tree, commit, tag — are the only things git stores as
+objects. **References** are a separate, simpler mechanism: a ref is just a small
+text file under `.git/refs/` (or an entry in `.git/packed-refs`) holding the
+hash of an object. The names you work with every day — `main`, `feature/login`,
+`v1.4.0` — are refs. A **branch** is a ref that advances automatically when you
+commit on it; a **lightweight tag** is a ref that never moves (no object behind
+it), while an annotated tag is a ref pointing at the tag object described above.
+Refs are how humans name commits; they are not objects themselves.
 
 ```text
       blob "fn main() {…}"  ←  tree "src/"  ←┐

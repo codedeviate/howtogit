@@ -98,7 +98,7 @@ gh auth logout --hostname github.com --user myusername
 | Flag | What it does | When to use it |
 |------|--------------|----------------|
 | `-s` / `--scopes` | Add more OAuth scopes | A command needs a scope you did not grant at login |
-| `--remove-scopes` | Remove scopes from the token | Reduce permissions after you no longer need them |
+| `-r` / `--remove-scopes` | Remove scopes from the token | Reduce permissions after you no longer need them |
 | `--reset-scopes` | Reset to the minimum required set | Clean up accumulated scopes |
 
 ### token
@@ -148,10 +148,12 @@ gh auth setup-git
 
 ## Pitfalls & gotchas
 
-**The active account is per-host, per-session context.** If you switch to
-account A to run a command and forget to switch back, subsequent commands
-targeting account B's repositories will fail or act as account A. Get in the
-habit of confirming with `gh auth status --active`.
+**The active account is per-host and persists across sessions.** Switching is
+written to `~/.config/gh/hosts.yml`, so it sticks — a brand-new shell does *not*
+reset you to some default account. If you switch to account A to run a command
+and forget to switch back, every later command (in this and future terminal
+sessions) targeting account B's repositories will fail or act as account A. Get
+in the habit of confirming with `gh auth status --active`.
 
 **`gh auth refresh` works only on the active account.** To refresh credentials
 for an inactive account, switch to it first, refresh, then switch back:

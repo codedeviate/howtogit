@@ -45,6 +45,7 @@ Open the configured editor to write a multi-line message:
 ```sh
 git add -p          # interactively stage hunks
 git commit          # editor opens with diff summary at the bottom
+git commit -p       # or skip the staging step: pick hunks and commit in one go
 ```
 
 Stage all modified and deleted tracked files, then commit in one step:
@@ -72,7 +73,7 @@ git commit --amend              # rewrite the message in the editor
 | `--fixup=<commit>` | Create a `fixup!` commit targeting `<commit>` | Prep for `rebase --autosquash` |
 | `--squash=<commit>` | Create a `squash!` commit targeting `<commit>` | Like `--fixup` but lets you edit the combined message |
 | `-s` | Append a `Signed-off-by` trailer | Projects requiring DCO sign-off |
-| `-S[<key>]` | GPG-sign the commit | Verified commits on GitHub/GitLab |
+| `-S[<key-id>]` | GPG-sign the commit | Verified commits on GitHub/GitLab |
 | `-p` / `--patch` | Interactively choose which hunks to stage and commit | Commit only part of a file's changes |
 | `-C <commit>` | Reuse the message and authorship of `<commit>` exactly | Cherry-pick workflows |
 | `-c <commit>` | Like `-C` but opens the editor to let you modify | Edit a message from another commit |
