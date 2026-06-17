@@ -1,0 +1,64 @@
+# git book — chapter order (one filename per line)
+00-cover.md
+01-intro-what-is-git.md
+02-install-and-config.md
+# Part II — Creating & snapshotting
+10-init.md
+11-clone.md
+12-add.md
+13-status.md
+14-diff.md
+15-commit.md
+16-restore.md
+17-reset.md
+18-rm.md
+19-mv.md
+20-clean.md
+21-stash.md
+# Part III — Branching, merging, history rewriting
+30-branch.md
+31-checkout.md
+32-switch.md
+33-merge.md
+34-mergetool.md
+35-rebase.md
+36-cherry-pick.md
+37-revert.md
+38-tag.md
+39-bisect.md
+40-rerere.md
+# Part IV — Inspecting & comparing
+50-log.md
+51-show.md
+52-blame.md
+53-shortlog.md
+54-describe.md
+55-reflog.md
+56-grep.md
+57-range-diff.md
+# Part V — Sharing & remotes
+60-remote.md
+61-fetch.md
+62-pull.md
+63-push.md
+64-submodule.md
+65-worktree.md
+# Part VI — Patching & email workflow
+70-apply.md
+71-am.md
+72-format-patch.md
+73-send-email.md
+74-request-pull.md
+# Part VII — Administration
+80-gc.md
+81-fsck.md
+82-maintenance.md
+83-archive.md
+84-bundle.md
+85-notes.md
+86-sparse-checkout.md
+87-replace.md
+88-filter-branch.md
+89-hooks.md
+# Part VIII — Troubleshooting
+90-troubleshooting.md
