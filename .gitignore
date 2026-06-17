@@ -1,3 +1,6 @@
-dist/
+# Ignore generated build artifacts, but keep the published PDFs tracked.
+dist/*
+!dist/git.pdf
+!dist/gh.pdf
 .DS_Store
 *.swp
