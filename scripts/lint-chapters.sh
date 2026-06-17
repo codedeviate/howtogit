@@ -7,6 +7,7 @@ BOOK="${1:-}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SRC_DIR="$ROOT/book/$BOOK"
 ORDER="$SRC_DIR/order.txt"
+[ -f "$ORDER" ] || { echo "missing $ORDER" >&2; exit 1; }
 fail=0
 
 while IFS= read -r line || [ -n "$line" ]; do
