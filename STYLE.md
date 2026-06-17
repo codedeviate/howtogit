@@ -13,8 +13,8 @@ exactly.
 - Fenced code blocks with a language hint (` ```sh `, ` ```text `, ` ```console `).
 - Show realistic, copy-pasteable commands. Where output matters, show it.
 - Use GFM tables for option lists.
-- Cross-reference other chapters by their title in prose, e.g.
-  "see *Rewriting history with rebase*", not by filename.
+- Cross-reference other chapters by the command name in prose, e.g.
+  "see the *rebase* chapter", not by filename.
 - Mixed audience: a beginner can follow the Mental model and Everyday usage;
   a practitioner gets depth in Best practices, Pitfalls, and Worked examples.
 

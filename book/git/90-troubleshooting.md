@@ -515,14 +515,14 @@ converts line endings on checkout and commit, creating spurious diffs.
 
 3. Tell collaborators to re-checkout their working trees after pulling the
    commit, or the stale line endings in their local files will cause spurious
-   diffs. Stash or commit any uncommitted changes first — `git reset --hard`
-   will discard them:
+   diffs. **This sequence runs `git reset --hard`, which permanently discards
+   uncommitted changes — stash or commit first, every time:**
 
    ```sh
-   git stash          # if you have uncommitted work to preserve
+   git stash          # ALWAYS run first if you have any uncommitted work
    git rm --cached -r .
    git reset --hard
-   git stash pop      # restore stashed work, if applicable
+   git stash pop      # restore stashed work, if you stashed any
    ```
 
 **How to avoid it.** Commit a `.gitattributes` file as the first commit in
