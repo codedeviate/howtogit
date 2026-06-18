@@ -1,4 +1,9 @@
-# howtogit
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/howtogit-title-dark.svg">
+    <img alt="howtogit — $ how to git" src="assets/howtogit-title.svg" width="440">
+  </picture>
+</h1>
 
 Two in-depth, best-practices reference books for **git** and **gh**, written in Markdown and rendered to PDF using [recon](https://github.com/codedeviate/recon). Each book covers fundamental concepts, everyday workflows, best practices, pitfalls, and real-world examples — with practical, copy-pasteable commands and clear explanations of the underlying mechanics.
 
