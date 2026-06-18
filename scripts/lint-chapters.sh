@@ -2,6 +2,8 @@
 # Enforce: every chapter file in order.txt has exactly one H1 (`# `) line.
 # H1s are counted only OUTSIDE fenced code blocks, so shell comments like
 # `# do the thing` inside ```sh examples are not mistaken for headings.
+# The cover (00-cover.md) is exempt: it is a styled title page with no heading,
+# kept out of the table of contents by design.
 set -euo pipefail
 
 BOOK="${1:-}"
@@ -16,6 +18,7 @@ while IFS= read -r line || [ -n "$line" ]; do
   case "$line" in ''|\#*) continue ;; esac
   f="$SRC_DIR/$line"
   [ -f "$f" ] || { echo "MISSING: $f"; fail=1; continue; }
+  case "$(basename "$line")" in 00-cover.md) continue ;; esac
   n="$(awk '
     /^[[:space:]]*(```|~~~)/ { infence = !infence; next }
     !infence && /^# /        { count++ }
