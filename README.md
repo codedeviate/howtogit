@@ -5,13 +5,43 @@
   </picture>
 </h1>
 
-Two in-depth, best-practices reference books for **git** and **gh**, written in Markdown and rendered to PDF using [recon](https://github.com/codedeviate/recon). Each book covers fundamental concepts, everyday workflows, best practices, pitfalls, and real-world examples — with practical, copy-pasteable commands and clear explanations of the underlying mechanics.
+<p align="center">
+  Two in-depth, best-practices reference books for <strong>git</strong> and <strong>gh</strong> —
+  authored in Markdown, built to polished PDFs with <a href="https://github.com/codedeviate/recon">recon</a>.
+</p>
+
+Every porcelain git command and every `gh` command group gets its own deep
+chapter: the mental model first, then everyday usage, the options that matter,
+best practices, the pitfalls that bite people, worked examples, and how to
+recover when things go wrong. Each book closes with a symptom-organized
+**"Getting out of jams"** troubleshooting chapter. Written for a mixed
+audience — beginner-friendly intros, practitioner-level depth per command.
+
+## Highlights
+
+- 📚 **Two book-length references** — a **356-page** git book (50+ commands) and
+  a **194-page** gh book (25+ command groups).
+- ✅ **Accuracy-checked** — every flag and option was verified against the real
+  `git` / `gh --help`, not written from memory.
+- 🎯 **Consistent structure** — every chapter follows the same template
+  (see [`STYLE.md`](STYLE.md)), so the books are easy to navigate.
+- 🖨️ **Book-quality PDFs** — A4, page-numbered, with a cover page and a linkable
+  table of contents; sans-serif body text with monospaced, shaded code blocks.
+- 📦 **Prebuilt and ready** — the rendered PDFs are committed, or rebuild from
+  source with a single `make`.
+
+## Read the books
+
+Grab the prebuilt PDFs directly — no build required:
+
+- **[`dist/git.pdf`](dist/git.pdf)** — the git book (356 pp)
+- **[`dist/gh.pdf`](dist/gh.pdf)** — the gh book (194 pp)
 
 ## What's inside
 
 ### Git book
 
-A comprehensive guide to distributed version control, organized in eight parts:
+Distributed version control, end to end, in eight parts:
 
 - **Part I**: Intro & Setup — What git is and how to install it
 - **Part II**: Creating & snapshotting — `init`, `clone`, `add`, `status`, `diff`, `commit`, `restore`, `reset`, `rm`, `mv`, `clean`, `stash`
@@ -24,7 +54,7 @@ A comprehensive guide to distributed version control, organized in eight parts:
 
 ### GitHub CLI (gh) book
 
-A practical guide to GitHub from the command line, organized in eight parts:
+GitHub from the command line, in eight parts:
 
 - **Part I**: Intro & Auth — What gh is and how to authenticate
 - **Part II**: Repositories & code — `repo`, `browse`, `search`
@@ -35,35 +65,33 @@ A practical guide to GitHub from the command line, organized in eight parts:
 - **Part VII**: Extending gh & scripting — `api`, `extension`, `status`, `completion`
 - **Part VIII**: Troubleshooting — Getting out of jams (organized by symptom, not command)
 
-## Prerequisites
+## Building from source
 
-To build the PDFs you only need **[recon](https://github.com/codedeviate/recon) 0.101.0 or newer**. Its embedded
-[Typst](https://typst.app/) engine renders the books — A4, page-numbered, with a cover page and a
-linkable table of contents. No browser or other tooling required.
-
-## Building the PDFs
-
-Prebuilt PDFs are committed in [`dist/`](dist/) — grab [`dist/git.pdf`](dist/git.pdf)
-or [`dist/gh.pdf`](dist/gh.pdf) directly if you just want to read. To rebuild
-them from source:
+Only one tool is needed: **[recon](https://github.com/codedeviate/recon) 0.102.0
+or newer**. Its embedded [Typst](https://typst.app/) engine renders the books
+(A4, page numbers, cover page, table of contents, the `IBM Plex Sans` body font,
+and shaded code blocks). No browser or other dependencies.
 
 ```sh
 make all       # Build both git.pdf and gh.pdf → dist/
 make git       # Build only the git book
 make gh        # Build only the gh book
-make lint      # Check chapter structure and linting rules
+make lint      # Check chapter structure (one H1 per chapter)
 make clean     # Remove the dist/ directory
 ```
 
-## Reading the source
+## Editing the source
 
-- Chapters live in `book/git/` (git book) and `book/gh/` (gh book)
-- Read `book/<book>/order.txt` to see the chapter order and part structure
-- Contribution and authoring rules are in [`STYLE.md`](STYLE.md) — mandatory for all chapters
-  - One H1 per chapter (the title)
-  - Standard command-chapter sections: Mental model, Synopsis, Everyday usage, Key options, Best practices, Pitfalls & gotchas, Worked examples, Recovery, See also
-  - Troubleshooting chapters organized by symptom, not command
-  - All code examples must be realistic and verified against `--help`
+- Chapters live in `book/git/` and `book/gh/`, one Markdown file per command.
+- `book/<book>/order.txt` defines the chapter order and the part structure.
+- The cover page is a Typst template, [`assets/cover.typ`](assets/cover.typ) — not a chapter.
+- Authoring rules are in [`STYLE.md`](STYLE.md) (mandatory for all chapters):
+  - One H1 per chapter (the title); sections are `##` / `###`.
+  - Command chapters follow a fixed section order: Mental model, Synopsis,
+    Everyday usage, Key options, Best practices, Pitfalls & gotchas, Worked
+    examples, Recovery, See also.
+  - Troubleshooting chapters are organized by symptom, not by command.
+  - No invented flags — every option is verified against `--help`.
 
 ## Repository layout
 
@@ -73,28 +101,18 @@ howtogit/
 ├── LICENSE                   # MIT License
 ├── Makefile                  # Build targets (all, git, gh, lint, clean)
 ├── STYLE.md                  # Writing standards & chapter templates
-├── .gitignore                # Git ignore rules
-├── assets/                   # Cover template + brand assets
-│   ├── cover.typ             # Typst cover page (--cover-template)
-│   └── howtogit-title*.svg   # Reusable "$ how to git" title lockup
+├── assets/                   # Cover template + reusable brand assets
+│   ├── cover.typ             # Typst cover page (recon --cover-template)
+│   ├── howtogit-title.svg    # "$ how to git" title lockup (outlined; + -dark, .png, .src)
+│   └── README.md             # How to use / regenerate the title assets
 ├── book/                     # Source chapters
-│   ├── git/                  # Git book chapters
-│   │   ├── order.txt         # Chapter order (with part headers)
-│   │   ├── 01-intro-*.md     # Introduction chapters
-│   │   ├── 1*-*.md           # Part II–VIII command chapters
-│   │   └── 90-troubleshooting.md
-│   └── gh/                   # GitHub CLI book chapters
-│       ├── order.txt         # Chapter order (with part headers)
-│       ├── 0*-*.md           # Part I setup & auth chapters
-│       ├── 1*-*.md           # Part II–VII feature chapters
-│       └── 90-troubleshooting.md
-├── scripts/                  # Build scripts
-│   ├── build-book.sh         # Main build engine (calls recon)
-│   ├── lint-chapters.sh      # Chapter linting
-│   └── make-stubs.sh         # Generate chapter stubs from order.txt
-└── dist/                     # Output PDFs (prebuilt + regenerated by make)
-    ├── git.pdf               # tracked in git
-    └── gh.pdf               # tracked in git
+│   ├── git/                  # order.txt + 01-intro-*, NN-<command>, 90-troubleshooting
+│   └── gh/                   # order.txt + 01-intro-*, NN-<group>, 90-troubleshooting
+├── scripts/
+│   ├── build-book.sh         # Assemble a book's chapters and render the PDF via recon
+│   ├── lint-chapters.sh      # Enforce one H1 per chapter (fence-aware)
+│   └── make-stubs.sh         # Create buildable stubs for any unwritten chapters
+└── dist/                     # Rendered PDFs (committed: git.pdf, gh.pdf)
 ```
 
 ## License
