@@ -15,5 +15,9 @@
   #v(1.6em)
   #line(length: 38%, stroke: 0.6pt + luma(170))
   #v(1.2em)
-  #text(11pt, font: "DejaVu Sans Mono", fill: luma(90))[#version #h(1.5em) #date #h(1.5em) #author]
+  #text(11pt, font: "DejaVu Sans Mono", fill: luma(90))[
+    #version \
+    #date \
+    #author
+  ]
 ]
