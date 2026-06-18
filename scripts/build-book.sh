@@ -44,6 +44,7 @@ recon --md-to-pdf "$MASTER" \
   --cover-template "$ROOT/assets/cover.typ" \
   --toc --toc-depth 2 --toc-title 'Contents' \
   --gfm --page-break-on-h1 \
+  --font 'IBM Plex Sans' \
   --doc-title "$TITLE" \
   --doc-subtitle "$SUBTITLE" \
   --doc-version "$VERSION" \
