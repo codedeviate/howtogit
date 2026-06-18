@@ -37,11 +37,9 @@ A practical guide to GitHub from the command line, organized in eight parts:
 
 ## Prerequisites
 
-To build the PDFs, you need:
-
-- **recon** ([github.com/codedeviate/recon](https://github.com/codedeviate/recon)) — the Markdown-to-PDF build engine
-- **agent-browser** — command-line browser driver (on PATH)
-- **Chrome** — required by recon's PDF rendering
+To build the PDFs you only need **[recon](https://github.com/codedeviate/recon) 0.101.0 or newer**. Its embedded
+[Typst](https://typst.app/) engine renders the books — A4, page-numbered, with a cover page and a
+linkable table of contents. No browser or other tooling required.
 
 ## Building the PDFs
 
@@ -76,16 +74,17 @@ howtogit/
 ├── Makefile                  # Build targets (all, git, gh, lint, clean)
 ├── STYLE.md                  # Writing standards & chapter templates
 ├── .gitignore                # Git ignore rules
+├── assets/                   # Cover template + brand assets
+│   ├── cover.typ             # Typst cover page (--cover-template)
+│   └── howtogit-title*.svg   # Reusable "$ how to git" title lockup
 ├── book/                     # Source chapters
 │   ├── git/                  # Git book chapters
 │   │   ├── order.txt         # Chapter order (with part headers)
-│   │   ├── 00-cover.md       # Cover page
 │   │   ├── 01-intro-*.md     # Introduction chapters
 │   │   ├── 1*-*.md           # Part II–VIII command chapters
 │   │   └── 90-troubleshooting.md
 │   └── gh/                   # GitHub CLI book chapters
 │       ├── order.txt         # Chapter order (with part headers)
-│       ├── 00-cover.md       # Cover page
 │       ├── 0*-*.md           # Part I setup & auth chapters
 │       ├── 1*-*.md           # Part II–VII feature chapters
 │       └── 90-troubleshooting.md

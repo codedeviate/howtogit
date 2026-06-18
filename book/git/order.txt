@@ -1,5 +1,5 @@
 # git book — chapter order (one filename per line)
-00-cover.md
+# (cover is rendered from assets/cover.typ via --cover-template, not a chapter)
 01-intro-what-is-git.md
 02-install-and-config.md
 # Part II — Creating & snapshotting

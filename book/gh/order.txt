@@ -1,5 +1,5 @@
 # gh book — chapter order (one filename per line)
-00-cover.md
+# (cover is rendered from assets/cover.typ via --cover-template, not a chapter)
 01-intro-what-is-gh.md
 02-auth.md
 03-config.md

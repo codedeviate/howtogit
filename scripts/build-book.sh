@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 # Assemble a book's chapters (per book/<name>/order.txt) into one markdown
-# file and render it to PDF with recon.
+# file and render it to PDF with recon (typst engine; A4 + page numbers are
+# recon defaults as of 0.101.0). The cover is a typst template, not markdown.
 set -euo pipefail
 
 BOOK="${1:-}"
+VERSION="Edition 2026.1"
+DATE="2026"
 case "$BOOK" in
   git)
     TITLE="howtogit — The git Best-Practices Book"
-    SUBJECT="A comprehensive, opinionated guide to git porcelain commands"
+    SUBTITLE="The git Best-Practices Book"
     KEYWORDS="git, version control, best practices, reference"
     ;;
   gh)
     TITLE="howtogit — The GitHub CLI Best-Practices Book"
-    SUBJECT="A comprehensive, opinionated guide to the gh command-line tool"
+    SUBTITLE="The GitHub CLI Best-Practices Book"
     KEYWORDS="gh, github cli, best practices, reference"
     ;;
   *) echo "usage: $0 <git|gh>" >&2; exit 2 ;;
@@ -38,11 +41,14 @@ while IFS= read -r line || [ -n "$line" ]; do
 done < "$ORDER"
 
 recon --md-to-pdf "$MASTER" \
+  --cover-template "$ROOT/assets/cover.typ" \
   --toc --toc-depth 2 --toc-title 'Contents' \
-  --gfm --unsafe-html --page-break-on-h1 \
+  --gfm --page-break-on-h1 \
   --doc-title "$TITLE" \
+  --doc-subtitle "$SUBTITLE" \
+  --doc-version "$VERSION" \
+  --doc-date "$DATE" \
   --doc-author 'Thomas Björk' \
-  --doc-subject "$SUBJECT" \
   --doc-keywords "$KEYWORDS" \
   -o "$PDF"
 
