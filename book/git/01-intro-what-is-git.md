@@ -109,7 +109,7 @@ Date:   Tue Jun 17 09:00:00 2026 +0200
 ## What a branch really is
 
 A branch is nothing more than a text file in `.git/refs/heads/` containing
-a 40-character commit hash. When you commit, git updates that file to point
+a commit hash. When you commit, git updates that file to point
 to the new commit. That is the entire mechanism.
 
 ```sh

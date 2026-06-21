@@ -104,7 +104,7 @@ git restore -p src/api.js
 | `--no-overlay` | Remove tracked files absent from the source tree (default) | Make the working tree exactly match a given tree |
 | `--recurse-submodules` | Also restore submodule working trees | Update a submodule to the commit recorded in the superproject |
 | `--pathspec-from-file=<file>` | Read paths from a file instead of the command line | Automate restores with long or generated path lists |
-| `--quiet` / `-q` | Suppress progress messages | Scripting |
+| `--quiet` / `-q` | Suppress feedback messages (implies --no-progress) | Scripting |
 
 ## Best practices
 

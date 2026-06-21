@@ -37,11 +37,13 @@ rebased onto a fast-moving base. Without rerere, every rebase step that hits
 the same conflict forces a manual re-resolution. With rerere, only the first
 resolution is manual; every subsequent one is automatic.
 
-Note that rerere never touches the index on its own. After it applies a
+By default, rerere never touches the index on its own — after it applies a
 recorded resolution you still need to inspect the result and `git add` the
 files. This is intentional: rerere's replay is a three-way merge of the old
 preimage, old postimage, and new conflict, and the result deserves a sanity
-check before it is staged.
+check before it is staged. (Setting `rerere.autoUpdate = true`, or passing
+`--rerere-autoupdate` to merge/rebase, makes rerere stage cleanly-resolved
+files into the index automatically.)
 
 ## Synopsis
 
@@ -188,6 +190,7 @@ Configuration variables that control rerere behavior:
 | Variable | Default | Effect |
 |---|---|---|
 | `rerere.enabled` | `false (auto-enabled if .git/rr-cache exists)` | Must be `true` to activate rerere in a new repository |
+| `rerere.autoUpdate` | `false` | When `true`, rerere updates the index with the resolved contents after a clean replay |
 | `gc.rerereUnresolved` | 15 days | Age at which unresolved records are pruned by `gc` |
 | `gc.rerereResolved` | 60 days | Age at which resolved records are pruned by `gc` |
 
@@ -232,11 +235,13 @@ git config rerere.enabled
 # should print: true
 ```
 
-**Rerere never stages files.** After rerere resolves a conflict automatically,
-the working tree file is updated but the index is not. You must run
-`git add <file>` yourself. Forgetting this leaves you with a resolved working
-tree that Git still considers conflicted, and the next `git status` will still
-show the file under "Unmerged paths".
+**By default, rerere never stages files.** After rerere resolves a conflict
+automatically, the working tree file is updated but the index is not. You must
+run `git add <file>` yourself. Forgetting this leaves you with a resolved
+working tree that Git still considers conflicted, and the next `git status`
+will still show the file under "Unmerged paths". (If you set
+`rerere.autoUpdate = true` or pass `--rerere-autoupdate` to `git merge` or
+`git rebase`, rerere will update the index automatically after a clean replay.)
 
 **A changed context can silently produce a wrong result.** Rerere performs a
 three-way merge between the original preimage, the original postimage, and the

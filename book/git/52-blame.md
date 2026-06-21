@@ -57,8 +57,9 @@ d4e5f6a7 (Bob    2025-11-22 16:30:11 +0100  3)         raise ValueError("empty t
 a1b2c3d4 (Alice  2025-03-10 09:14:02 +0100  4)     return _verify(user, token)
 ```
 
-A leading `^` marks a boundary commit — a line that has existed since the very
-first commit in the repository (or since the `--since` boundary).
+A leading `^` marks a boundary commit — the earliest commit in the requested
+range. With no range that is the repository root; with a revision range
+(e.g. `git blame v2.1.0..`) or `--since` it is the start of that range.
 
 Narrow blame to a specific line range (lines 30 through 55):
 
@@ -111,7 +112,7 @@ git blame -e src/auth.py
 | `--first-parent` | Follow only the first parent at merge commits | See when a line arrived on an integration branch |
 | `-p` / `--porcelain` | Machine-readable output with full commit metadata per block | Scripting and IDE integrations |
 | `--line-porcelain` | Like `--porcelain` but repeats commit info for every line | Simpler parsing at the cost of verbosity |
-| `--color-lines` | Highlight lines from the same commit in cyan | Terminal readability when scanning a file |
+| `--color-lines` | Color lines differently when they share a commit with the preceding line (cyan by default) to make same-commit runs visually distinct | Terminal readability when scanning a file |
 | `--color-by-age` | Colour lines based on how old they are | Quick visual age map of a file |
 | `--abbrev=<n>` | Use at least `n` hex digits for abbreviated hashes | Avoid collisions in large monorepos |
 | `-b` | Show a blank SHA-1 for boundary commits | Cleaner display when `--root` is not set |
@@ -200,9 +201,11 @@ to find the commit that removed a particular string. See the *log* chapter for
 pickaxe details.
 
 **The `^` prefix on a hash is a display marker, not ref syntax.** When you see
-`^a1b2c3d` in blame output, it means that line has existed in the file since a
-boundary commit — either the repository's root commit or the boundary set by
-`--since`. It is not the same `^` used in `HEAD^` revision syntax.
+`^a1b2c3d` in blame output, it means that line has existed since a boundary
+commit — the earliest commit in the requested range (the repository root when
+no range is given, or the start of a revision range such as `v2.1.0..` or the
+`--since` boundary when one is used). It is not the same `^` used in `HEAD^`
+revision syntax.
 
 **`--ignore-rev` can leave some lines unattributable.** When a commit is
 ignored, lines it touched are reattributed to a nearby commit where possible.

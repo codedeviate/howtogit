@@ -410,7 +410,7 @@ interrupted rebase).
 - *push* — the `--no-verify` flag that bypasses `pre-push`.
 - *am* — `applypatch-msg` and `pre-applypatch` hooks called during patch
   application.
-- *rebase* — triggers `post-rewrite` after squash and fixup operations.
+- *rebase* — triggers `post-rewrite` after any rebase that rewrites commits (squash and fixup list multiple commits mapping to one new commit on stdin).
 - *gc* — `pre-auto-gc` hook called before automatic garbage collection.
 - *Getting out of jams* — recovering from interrupted operations caused by
   hook failures.

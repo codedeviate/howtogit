@@ -56,7 +56,7 @@ git worktree add ../hotfix
 Create a worktree for an existing branch:
 
 ```sh
-git worktree add ../review origin/feature/payments
+git worktree add ../review feature/payments
 ```
 
 Create a worktree with an explicit new branch name:

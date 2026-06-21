@@ -175,7 +175,7 @@ commits and you expect them to show up, add `--diff-merges=remerge` (or the
 warning.
 
 **The three-dot form means something specific.** `git range-diff v1...v2` is
-*not* the same as `git diff v1...v2`. It expands to `v1..v2 v2..v1` — the
+*not* the same as `git diff v1...v2`. It expands to `v2..v1 v1..v2` — the
 symmetric difference of both ranges. Use the explicit two-range form if you
 need to compare ranges that do not share the same base.
 

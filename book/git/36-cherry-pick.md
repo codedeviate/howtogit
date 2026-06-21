@@ -47,7 +47,7 @@ git cherry-pick a3f9c1b
 ```
 
 Copy a range of commits (picks all commits reachable from `feature` but not
-from the current HEAD):
+from `main`):
 
 ```sh
 git cherry-pick main..feature

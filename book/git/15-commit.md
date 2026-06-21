@@ -107,10 +107,11 @@ rate limiter only counted by username, not source IP. CVE-2026-1234.
 Refs: #412
 ```
 
-**Stage deliberately, not with `git commit -a`.** The `-a` flag bypasses the
-staging area entirely. It is convenient for solo work but can accidentally
-include debug code, half-finished changes, or unrelated fixes in the same
-commit.
+**Stage deliberately, not with `git commit -a`.** The `-a` flag auto-stages
+all tracked modified and deleted files, skipping the manual `git add` step
+(it still writes to the index before committing). It is convenient for solo
+work but can accidentally include debug code, half-finished changes, or
+unrelated fixes in the same commit.
 
 **Keep commits small and focused.** Each commit should represent one logical
 change. Reviewers can understand and approve small commits; large omnibus
@@ -189,7 +190,7 @@ When the branch is approved and ready to merge, squash the fixup in:
 git rebase -i --autosquash origin/main
 ```
 
-Git moves the `fixup!` commit immediately after `a3f9c1` and marks it for squash.
+Git moves the `fixup!` commit immediately after `a3f9c1` and marks it with the fixup action, silently discarding its commit message.
 
 The result is a clean history without the typo ever appearing.
 

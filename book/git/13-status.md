@@ -113,7 +113,7 @@ git status --ignored
 | `-v`, `--verbose` | Also show the diff of staged changes; `-vv` adds unstaged diff | Review exactly what will be committed |
 | `-u[<mode>]`, `--untracked-files[=<mode>]` | Control untracked-file reporting: `no`, `normal`, or `all` | `no` for speed in large trees; `all` to expand new directories |
 | `--ignored[=<mode>]` | Show ignored files; modes: `traditional`, `no`, `matching` | Auditing `.gitignore` rules |
-| `-z` | NUL-terminate entries instead of newline; implies `--porcelain=v1` | Robust script parsing when paths may contain spaces |
+| `-z` | NUL-terminate entries instead of newline; implies `--porcelain=v1` if no other format is given | Robust script parsing when paths may contain spaces |
 | `--ahead-behind` / `--no-ahead-behind` | Show or suppress the ahead/behind count vs upstream | `--no-ahead-behind` speeds up status on slow network mounts |
 | `--renames` / `--no-renames` | Enable or disable rename detection | Override user config in scripts |
 | `--find-renames[=<n>]` | Enable rename detection with an optional similarity threshold | Fine-tune when files are only partially renamed |

@@ -122,7 +122,7 @@ git stash clear
 | `-u` / `--include-untracked` | `push`, `show` | Include untracked files in the stash and clean them up | New files not yet added to the index |
 | `--only-untracked` | `show` | Show only untracked files in the stash diff | Inspecting which new files were stashed |
 | `-a` / `--all` | `push` | Include untracked and ignored files | Temporarily clearing build artefacts |
-| `-k` / `--keep-index` | `push` | Leave already-staged changes intact; stash only unstaged changes | Test staged changes in isolation before committing |
+| `-k` / `--keep-index` | `push` | Stash all changes, but restore the index afterward so already-staged changes remain staged | Test staged changes in isolation before committing |
 | `--no-keep-index` | `push` | Override the implicit `--keep-index` set by `--patch` | Stash everything including what is staged |
 | `-p` / `--patch` | `push` | Interactively choose hunks to stash | Stash only part of a file's changes |
 | `-S` / `--staged` | `push` | Stash only staged changes | Park staged-but-not-yet-committed work for later |
@@ -151,9 +151,9 @@ two, create a real branch with a `git commit`.
 
 **Use `--keep-index` to test staged changes in isolation.** When you have
 staged some changes and want to verify they build or pass tests without
-unstaged noise, `git stash push --keep-index` shelves only the unstaged
-changes. The index is left intact for a clean test run, then `pop` brings
-back the rest.
+unstaged noise, `git stash push --keep-index` stashes all tracked changes
+but restores the index afterward, so your staged changes remain staged for a
+clean test run; then `pop` brings back the unstaged work.
 
 **Use `branch` to promote a long-lived stash.** If a stash grows stale
 because the branch it came from has moved on, `git stash branch <name>`

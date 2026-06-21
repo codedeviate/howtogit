@@ -144,10 +144,12 @@ what Git actually has. Make it muscle memory.
 diff everything beneath it.
 
 **Prefer `...` (triple-dot) for branch comparisons.** `git diff main..feature`
-includes any commits on `main` that are not yet on `feature`, which produces
-noise when `main` has moved on. `git diff main...feature` diffs from the
-point the branch diverged, so you see only what the feature branch
-contributed.
+is identical to `git diff main feature`: a tip-to-tip diff between the two
+branch tips. When `main` has moved ahead of the point where `feature` branched
+off, that diff also reflects the changes `main` gained (as apparent
+reversals/deletions), producing noise rather than showing only what `feature`
+contributed. `git diff main...feature` diffs from the common ancestor to
+`feature`'s tip, so you see only what the feature branch added.
 
 **Use `--stat` first, then drill in.** On large diffs, `--stat` gives you a
 map before you descend into patch text. Once you know which files matter,

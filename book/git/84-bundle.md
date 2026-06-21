@@ -141,8 +141,10 @@ git bundle create yesterday.bundle master~10..master~5
 # fatal: Refusing to create empty bundle.
 ```
 
-Use a branch name, tag, or `HEAD` explicitly instead of a raw hash or
-relative expression.
+Ensure the right-hand-side tip of any range (the more-recent end) is a
+branch name, tag, or `HEAD`. The left-hand side may be a relative
+expression; for example, `master~10..master` is valid. Only the tip —
+the right-hand side — must resolve to a named reference.
 
 **Bundles do not include everything you might expect.** The index,
 working tree, stash, reflogs, per-repository config, and hooks are all

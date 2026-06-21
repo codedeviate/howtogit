@@ -186,7 +186,7 @@ but confusing until you understand it.
 
 **Embedded repositories trigger a warning.** If you run `git add` on a
 directory that contains its own `.git` folder (a nested repository not
-managed as a submodule), Git warns you and registers only an empty tree.
+managed as a submodule), Git warns you and registers a gitlink entry (mode 160000) — a pointer to the embedded repo's current HEAD commit — rather than the directory's actual file contents.
 To add a nested repo properly, use `git submodule add`.
 
 ## Worked examples

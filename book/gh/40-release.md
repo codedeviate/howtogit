@@ -202,7 +202,7 @@ Download all assets from a specific release:
 gh release download v2.2.0
 ```
 
-Download only matching files from the latest release (`--pattern` is required
+Download only matching files from the latest release (`--pattern` or `--archive` is required
 when no tag is given):
 
 ```sh

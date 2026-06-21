@@ -191,8 +191,9 @@ git config --global grep.patternType extended
 
 **Untracked and ignored files are invisible by default.** If you just created
 a file that is not yet staged, `git grep` will not find it unless you add
-`--untracked`. Vendor directories in `.gitignore` are always excluded unless
-you use `--no-index`, which bypasses Git's file list entirely.
+`--untracked`. Vendor directories in `.gitignore` are always excluded unless you use
+`--untracked --no-exclude-standard` (to add ignored files while staying inside
+the Git context) or `--no-index` (to bypass Git's file list entirely).
 
 **The default regex engine is basic, not extended.** Characters like `+`,
 `?`, `|`, `(`, and `)` must be escaped or you must pass `-E`. A common

@@ -132,9 +132,13 @@ git mergetool src/config.js     # focus here first
 git mergetool                   # handle the rest
 ```
 
-**Set `mergetool.<tool>.trustExitCode` for reliable tools.** The interactive
-"Was the merge successful?" prompt exists because not every tool reports
-success via its exit code. If your tool does, suppress the prompt:
+**Set `mergetool.<tool>.trustExitCode` for reliable tools.** When
+`trustExitCode` is not set, Git checks whether the resolved file's timestamp
+has changed after the tool exits; if the file was updated it assumes success
+silently, and only shows the "Was the merge successful?" prompt when the
+timestamp is unchanged (suggesting the tool may not have saved). Setting
+`trustExitCode=true` tells Git to use the tool's exit code instead,
+suppressing the timestamp check and its prompt entirely:
 
 ```sh
 git config --global mergetool.meld.trustExitCode true
@@ -291,7 +295,7 @@ save and quit:
 
 ```text
 :wq      " save and mark as resolved
-:cq      " quit without saving — mergetool will ask whether to retry
+:cq      " abort — Vim exits non-zero, git leaves the file conflicted
 ```
 
 To use Neovim instead, set `--tool=nvimdiff` and configure
