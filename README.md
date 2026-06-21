@@ -95,6 +95,25 @@ make clean     # Remove the dist/ directory
   - Troubleshooting chapters are organized by symptom, not by command.
   - No invented flags — every option is verified against `--help`.
 
+## Versioning & commits
+
+Releases follow [Semantic Versioning](https://semver.org) — `vMAJOR.MINOR.PATCH`
+— and each release attaches the rendered `git.pdf` and `gh.pdf` as assets.
+
+Commits follow [Conventional Commits](https://www.conventionalcommits.org):
+
+| Type | Used for | Bump |
+|------|----------|------|
+| `feat` | a new chapter or capability | minor |
+| `fix` | content corrections, broken commands or examples | patch |
+| `docs` | README and other meta documentation | patch |
+| `build` | build scripts, Makefile, cover template | patch |
+| `style` | presentation/formatting only (no content change) | — |
+| `chore` | housekeeping | — |
+
+A `!` after the type or a `BREAKING CHANGE:` footer marks a major bump (e.g. a
+restructured book or a breaking change to the build).
+
 ## Repository layout
 
 ```
