@@ -131,14 +131,18 @@ refs, ref-mapping, and familiar output.
 ## Pitfalls & gotchas
 
 **The tip of a range must resolve to a named ref.** Git refuses to create
-a bundle whose tip is a bare commit hash rather than a ref:
+a bundle whose right-hand-side tip cannot be resolved to a named reference.
+Bare commit hashes and relative expressions like `master~5` both fail:
 
 ```sh
 git bundle create head.bundle $(git rev-parse HEAD)
 # fatal: Refusing to create empty bundle.
+git bundle create yesterday.bundle master~10..master~5
+# fatal: Refusing to create empty bundle.
 ```
 
-Use a branch name, tag, or `HEAD` explicitly instead of a raw hash.
+Use a branch name, tag, or `HEAD` explicitly instead of a raw hash or
+relative expression.
 
 **Bundles do not include everything you might expect.** The index,
 working tree, stash, reflogs, per-repository config, and hooks are all

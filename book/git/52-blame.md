@@ -205,9 +205,11 @@ boundary commit — either the repository's root commit or the boundary set by
 `--since`. It is not the same `^` used in `HEAD^` revision syntax.
 
 **`--ignore-rev` can leave some lines unattributable.** When a commit is
-ignored, lines it touched that cannot be attributed to any nearby commit are
-marked with `*` in the output (if `blame.markUnblamableLines` is set) or `?`
-(if `blame.markIgnoredLines` is set). Check your config if attribution looks
+ignored, lines it touched are reattributed to a nearby commit where possible.
+Lines that were changed by the ignored commit and successfully attributed to
+another commit are marked with `?` (if `blame.markIgnoredLines` is set). Lines
+that could not be attributed to any other commit are marked with `*` (if
+`blame.markUnblamableLines` is set). Check your config if attribution looks
 wrong after adding a revision to the ignore list.
 
 ## Worked examples

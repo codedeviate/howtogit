@@ -44,7 +44,7 @@ Open the configured editor to write a multi-line message:
 
 ```sh
 git add -p          # interactively stage hunks
-git commit          # editor opens with diff summary at the bottom
+git commit          # editor opens with status summary (commented-out file list)
 git commit -p       # or skip the staging step: pick hunks and commit in one go
 ```
 

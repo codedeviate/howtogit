@@ -17,8 +17,8 @@ account and a work account on `github.com`) or against GitHub Enterprise
 Server instances alongside github.com.
 
 `gh` marks one account per host as **active**. All commands use the active
-account for that host unless you override with `GH_TOKEN` or `--repo` with a
-different owner.
+account for that host unless you override with `GH_TOKEN` or
+`GH_ENTERPRISE_TOKEN` in the environment.
 
 ## Synopsis
 

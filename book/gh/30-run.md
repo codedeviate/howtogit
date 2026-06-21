@@ -351,7 +351,7 @@ gh run view 12345678 --json jobs --jq '.jobs[] | {name, databaseId}'
 ```
 
 **`gh run watch` does not work with fine-grained PATs.** GitHub does not
-expose a `checks:read` scope for fine-grained personal access tokens.
+expose a `checks:read` permission for fine-grained personal access tokens.
 Authenticated with such a token, `gh run watch` will fail. Use a classic PAT
 or the `GITHUB_TOKEN` provided by Actions.
 

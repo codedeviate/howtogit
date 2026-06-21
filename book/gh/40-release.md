@@ -308,7 +308,7 @@ gh release delete v2.2.0 --cleanup-tag
 | Flag | What it does | When to use it |
 |------|--------------|----------------|
 | `--draft` | Toggle draft state (`--draft=false` to publish) | Publish a previously staged draft |
-| `--prerelease` | Mark the release as a prerelease | Promote RC to stable |
+| `--prerelease` | Mark the release as a prerelease | Flag an already-published release as alpha/beta/RC |
 | `--latest` | Explicitly mark as latest | Set after backfilling a patch |
 | `-t` / `--title` | Update the title | Correct a typo |
 | `-n` / `--notes` | Replace notes with a string | Quick inline correction |

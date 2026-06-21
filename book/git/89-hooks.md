@@ -167,7 +167,7 @@ that invoke them.
 | Context | Option / variable | What it does |
 |---------|-------------------|--------------|
 | `git commit` | `--no-verify` | Skips `pre-commit` and `commit-msg` hooks |
-| `git merge` | `--no-verify` | Skips `pre-merge-commit` hook |
+| `git merge` | `--no-verify` | Skips `pre-merge-commit` and `commit-msg` hooks |
 | `git push` | `--no-verify` | Skips `pre-push` hook |
 | `git am` | `--no-verify` | Skips `applypatch-msg` and `pre-applypatch` hooks |
 | `git config` | `core.hooksPath` | Redirects all hook lookups to the given directory |

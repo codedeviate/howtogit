@@ -36,14 +36,14 @@ the failures to `*.rej` files for manual resolution.
 
 ```text
 git apply [--stat] [--numstat] [--summary] [--check]
-          [--index | --cached] [-N | --intent-to-add]
+          [--index | --intent-to-add]
           [-3 | --3way] [--ours | --theirs | --union]
           [-R | --reverse] [--reject]
           [-p<n>] [-C<n>] [--directory=<root>]
           [--exclude=<path-pattern>] [--include=<path-pattern>]
           [--ignore-space-change | --ignore-whitespace]
           [--whitespace=<action>]
-          [--recount] [--inaccurate-eof] [--unidiff-zero]
+          [--recount] [--inaccurate-eof] [--unidiff-zero] [--cached]
           [--apply] [--no-add] [--allow-empty]
           [--verbose | --quiet] [--unsafe-paths]
           [<patch>...]

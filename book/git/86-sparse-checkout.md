@@ -41,7 +41,7 @@ reapply` afterwards to re-hide those files.
 
 ```text
 git sparse-checkout list
-git sparse-checkout set [--cone | --no-cone] [--[no-]sparse-index] [--stdin] <dir>...
+git sparse-checkout set [--cone | --no-cone] [--[no-]sparse-index] (--stdin | <dir>...)
 git sparse-checkout add [--stdin] <dir>...
 git sparse-checkout reapply [--[no-]cone] [--[no-]sparse-index]
 git sparse-checkout disable

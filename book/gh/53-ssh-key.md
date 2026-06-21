@@ -33,19 +33,19 @@ gh ssh-key delete <id>        [-y]
 
 ### Listing registered keys
 
-Show every SSH key on your account, including its ID, title, and type:
+Show every SSH key on your account, including its title, ID, and type:
 
 ```sh
 gh ssh-key list
 ```
 
 ```text
-ID        TITLE           KEY                   CREATED
-12345678  Work MacBook    ssh-ed25519 AAAAC3...  2024-01-10
-12345679  Personal M3     ssh-ed25519 AAAAC3...  2024-03-22
+Work MacBook	ssh-ed25519 AAAAC3...	2024-01-10T00:00:00Z	12345678	authentication
+Personal M3 	ssh-ed25519 AAAAC3...	2024-03-22T00:00:00Z	12345679	authentication
 ```
 
-The ID column is what you pass to `delete`.
+The output is tab-separated with no header row. Columns are TITLE, KEY,
+CREATED, ID, TYPE. The numeric ID (4th field) is what you pass to `delete`.
 
 ### Adding a key
 
@@ -194,8 +194,7 @@ gh ssh-key list
 ```
 
 ```text
-ID        TITLE                   KEY                   CREATED
-87654321  Ada's MacBook Pro       ssh-ed25519 AAAAC3...  2026-06-17
+Ada's MacBook Pro	ssh-ed25519 AAAAC3...	2026-06-17T00:00:00Z	87654321	authentication
 ```
 
 Test the connection:
@@ -239,9 +238,8 @@ gh ssh-key list
 ```
 
 ```text
-ID        TITLE             KEY                   CREATED
-11111111  Old Laptop        ssh-ed25519 AAAAB3...  2023-09-01
-22222222  Work MacBook      ssh-ed25519 AAAAC3...  2025-01-15
+Old Laptop  	ssh-ed25519 AAAAB3...	2023-09-01T00:00:00Z	11111111	authentication
+Work MacBook	ssh-ed25519 AAAAC3...	2025-01-15T00:00:00Z	22222222	authentication
 ```
 
 ```sh
@@ -264,7 +262,7 @@ Fetch the list of key IDs matching a known title pattern and delete each one:
 
 ```sh
 # List all keys, filter by title, extract ID, delete
-gh ssh-key list | grep "Old CI runner" | awk '{print $1}' | while read id; do
+gh ssh-key list | grep "Old CI runner" | awk -F'\t' '{print $4}' | while read id; do
   gh ssh-key delete "$id" --yes
 done
 ```

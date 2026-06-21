@@ -55,7 +55,7 @@ Refs are how humans name commits; they are not objects themselves.
 ```text
       blob "fn main() {…}"  ←  tree "src/"  ←┐
       blob "README.md"      ←  tree "/"    ←──── commit C3  ←  commit C4  ←  HEAD
-                                                  (parent: C3)
+                                                               (parent: C3)
 ```
 
 ## The three areas

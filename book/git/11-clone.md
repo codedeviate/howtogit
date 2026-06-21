@@ -172,9 +172,10 @@ and mirroring, not day-to-day development.
 
 **`--shared` is dangerous on local clones.** It sets up an alternates file
 so the new clone borrows objects directly from the source. If objects are
-later pruned from the source (e.g. after a `git gc` following branch
-deletion), the clone can become corrupt. Use `--no-hardlinks` for safe local
-backups instead.
+later pruned from the source (e.g. after deleting a branch in the source and a
+later `git commit` there triggers `git maintenance run --auto`), the clone can
+become corrupt. Note that `git gc` itself is safe on the source because it uses
+`--local` by default. Use `--no-hardlinks` for safe local backups instead.
 
 **Cloning over SSH fails if the agent is not running.** If `git clone
 git@github.com:...` hangs or reports "Permission denied (publickey)", verify

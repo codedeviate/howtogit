@@ -112,12 +112,12 @@ git filter-branch --tag-name-filter cat -- --all
 | `--tree-filter <cmd>` | Checks out each commit's tree into a temporary directory, runs `<cmd>` with that directory as cwd, then re-indexes everything | Modify or delete files when you need full working-tree access; very slow |
 | `--index-filter <cmd>` | Like `--tree-filter` but operates on the index directly without checking out files | Remove or rename tracked files; significantly faster than `--tree-filter` |
 | `--msg-filter <cmd>` | Reads the original commit message on stdin; writes the new message on stdout | Strip SVN IDs, add trailers, reformat messages |
-| `--commit-filter <cmd>` | Replaces the `git commit-tree` call; receives the tree SHA and parent flags as arguments, must print the new commit SHA | Skip commits entirely; apply per-commit logic; use `skip_commit "$@"` to drop a commit |
+| `--commit-filter <cmd>` | Replaces the `git commit-tree` call; receives the tree SHA and parent flags as positional arguments and the original log message on stdin; must print the new commit SHA on stdout | Skip commits entirely; apply per-commit logic; use `skip_commit "$@"` to drop a commit |
 | `--parent-filter <cmd>` | Receives the parent string on stdin, writes the new parent string on stdout | Graft histories; add or remove parents |
 | `--tag-name-filter <cmd>` | Called for every tag pointing to a rewritten object; original tag name on stdin, new name on stdout | Keep tags in sync after a rewrite; `--tag-name-filter cat` passes names through unchanged |
 | `--subdirectory-filter <dir>` | Rewrites history to use `<dir>` as the project root, discarding all other paths | Split a subdirectory into its own repository |
 | `--prune-empty` | Drops commits that become empty (identical tree to parent) after filtering | Avoid cluttering history with no-op commits; cannot be combined with `--commit-filter` |
-| `--setup <cmd>` | Runs `<cmd>` once before the loop; defines shell functions or variables shared by other filters | Factor out common logic used by multiple filters |
+| `--setup <cmd>` | Runs `<cmd>` once before the loop; defines shell functions or variables available to other filters (but NOT to `--commit-filter`, for technical reasons) | Factor out common logic used by multiple filters |
 | `--original <namespace>` | Override the backup location for original refs (default: `refs/original`) | Avoid collisions when running filter-branch more than once |
 | `-d <directory>` | Use a custom temporary directory for tree checkout (e.g. a tmpfs path) | Speed up `--tree-filter` on large repositories |
 | `-f`, `--force` | Allow running even if `refs/original/` already exists or the temporary directory is present | Re-run after a failed or aborted rewrite |

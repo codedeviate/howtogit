@@ -150,7 +150,7 @@ output without parsing unified-diff syntax.
 combined diff (`--diff-merges=dense-combined`) only shows lines that differ
 from *both* parents, which means most of the merge is hidden. If you want to
 see all changes relative to the first parent, use `--diff-merges=first-parent`
-(or its shorthand `--dd`). To see diffs against each parent separately, use
+(or its shorthand `--dd`, which also implies `-p` and applies to regular commits too). To see diffs against each parent separately, use
 `--diff-merges=separate`.
 
 **Bare `git show` shows HEAD, not the working tree.** A common confusion: you

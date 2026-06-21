@@ -84,7 +84,7 @@ Use a specific tool for this one invocation without changing your config:
 git mergetool --tool=meld
 ```
 
-Skip the "was the merge successful?" prompt between files:
+Skip the per-file pre-invocation prompt (the chance to skip a path before the tool opens):
 
 ```sh
 git mergetool --no-prompt
@@ -96,7 +96,7 @@ git mergetool --no-prompt
 |--------|--------------|----------------|
 | `-t <tool>`, `--tool=<tool>` | Use a specific merge tool (e.g. `meld`, `kdiff3`, `vimdiff`) | Override `merge.tool` for a single session |
 | `--tool-help` | Print all tools recognised on this system | Discover what is available before configuring |
-| `-y`, `--no-prompt` | Skip the per-file "was the merge successful?" prompt | Batch processing; tool reports success via exit code |
+| `-y`, `--no-prompt` | Skip the per-file pre-invocation prompt (the chance to skip a path before the tool opens). Already the default when `--tool` or `merge.tool` is set. | Batch processing without file-skip prompts |
 | `--prompt` | Always prompt before opening each file | Review each file name before the tool launches |
 | `-g`, `--gui` | Use `merge.guitool` instead of `merge.tool` | Switch to a graphical tool when a display is available |
 | `--no-gui` | Force `merge.tool`, ignoring `merge.guitool` and `mergetool.guiDefault` | Override a GUI default in a headless session |

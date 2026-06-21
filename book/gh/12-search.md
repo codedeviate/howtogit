@@ -231,7 +231,7 @@ Shares most flags with `search issues`, with the following additions:
 
 | Flag | What it does | When to use it |
 |------|--------------|----------------|
-| `--draft` | Filter on draft state | Exclude work-in-progress |
+| `--draft` | Filter on draft state | Find only draft (work-in-progress) PRs |
 | `--merged` | Only merged PRs | Audit merged work |
 | `--merged-at date` | Filter by merge date | Release retrospectives |
 | `-B` / `--base string` | Filter by base branch name | PRs targeting a specific branch |

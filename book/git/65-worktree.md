@@ -171,7 +171,7 @@ will show a completely different picture than expected. Always verify your
 working directory with `pwd` or a shell prompt that shows the current path
 before running git commands.
 
-**Refs inside `refs/bisect` and `refs/worktree` are per-worktree, not
+**Refs inside `refs/bisect`, `refs/worktree`, and `refs/rewritten` are per-worktree, not
 shared.** A bisect session started in one worktree is invisible in another.
 This is usually desirable, but it can surprise you if you expect
 `git bisect reset` in the main worktree to clean up a bisect started in a

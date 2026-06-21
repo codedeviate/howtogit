@@ -101,8 +101,9 @@ git commit -m "Revert the broken payment refactor"
 ## Best practices
 
 **Always explain why the commit is being reverted.** Git generates a subject
-line for you (`Revert "Add payment gateway"`), but the body is empty. Use
-the editor to record the defect number, the incident, or the reasoning. A
+line for you (`Revert "Add payment gateway"`), but the body contains only
+the bare `This reverts commit <hash>.` line. Use the editor to record the
+defect number, the incident, or the reasoning. A
 future reader looking at `git log` deserves to understand what went wrong.
 
 ```text
@@ -169,7 +170,8 @@ This is intentional — finish with `git commit` when you are satisfied with
 the combined diff.
 
 **Repeatedly reverting reverts produces unwieldy subject lines.** Reverting a
-revert yields `Revert "Revert "Add payment gateway""`, and so on indefinitely.
+revert yields `Reapply "Add payment gateway"`, and further reverts nest as
+`Reapply "Reapply "<original-subject>""`, and so on indefinitely.
 When re-applying previously reverted work, prefer `git cherry-pick` on the
 original commit, or rewrite the message after reverting the revert.
 

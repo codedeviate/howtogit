@@ -234,8 +234,9 @@ limit quickly. GraphQL has a separate point-based budget.
    gh api --include repos/{owner}/{repo} 2>&1 | grep -i ratelimit
    ```
 
-3. Wait until the reset time, then retry. The window resets on a rolling
-   one-hour basis.
+3. Wait until the reset time, then retry. The window is a fixed one-hour
+   period; X-RateLimit-Reset (and resources.core.reset) gives the absolute
+   UTC timestamp at which the full quota is restored.
 
 4. If the rate limit is from an unauthenticated request path, confirm `gh` is
    authenticated and the correct token is in use:

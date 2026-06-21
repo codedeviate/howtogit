@@ -110,7 +110,7 @@ git add -n .
 | `--renormalize` | Re-apply line-ending normalization to all tracked files | Fix mixed CRLF/LF after changing `core.autocrlf` |
 | `--refresh` | Update cached stat info without changing staged content | Silence false-positive dirty markers without restaging |
 | `--ignore-errors` | Continue staging remaining files if some fail | Partially stage a large batch where a few files error |
-| `--ignore-missing` | With `--dry-run`, check ignore status for absent files | Test whether a path would be ignored before it exists |
+| `--ignore-missing` | With `--dry-run`, check whether the given paths would be ignored, whether or not they currently exist in the working tree | Check ignore status for paths regardless of whether they are present on disk |
 | `--sparse` | Allow staging paths outside the sparse-checkout cone | Advanced sparse-checkout workflows |
 | `--pathspec-from-file=<file>` | Read paths from a file instead of the command line | Script-generated file lists; very long path sets |
 | `--pathspec-file-nul` | With `--pathspec-from-file`, use NUL as the separator | Safe handling of filenames that contain newlines |

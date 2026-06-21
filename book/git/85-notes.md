@@ -121,7 +121,7 @@ git notes list
 | `-c <object>` | Like `-C` but open the editor to modify it | Adapt an existing note for a new commit |
 | `--separator=<str>` | Custom separator inserted between multiple `-m`/`-F` paragraphs | Use `---` instead of a blank line |
 | `--no-separator` | No separator between paragraphs | Concatenate messages directly |
-| `--stripspace` | Normalise whitespace (default for `-m`/`-F`) | Keep notes tidy |
+| `--stripspace` | Normalise whitespace (default for all input modes except `-C`) | Keep notes tidy |
 | `--no-stripspace` | Preserve whitespace exactly | Notes with intentional indentation |
 | `--ref=<ref>` | Operate on a notes ref other than `refs/notes/commits` | Multiple independent annotation namespaces |
 | `--ignore-missing` | Do not error when removing a note that does not exist | Safe `remove` calls in scripts |
@@ -178,10 +178,11 @@ or amend a commit, Git creates a new commit object with a new hash. Notes
 attached to the original hash become orphaned unless rewriting is configured:
 
 ```sh
-git config notes.rewrite.rebase true
-git config notes.rewrite.amend  true
-git config notes.rewriteRef     refs/notes/commits
+git config notes.rewriteRef refs/notes/commits
 ```
+
+`notes.rewrite.rebase` and `notes.rewrite.amend` default to `true`, so only
+`notes.rewriteRef` (which has no default) must be set explicitly.
 
 **Prefer `append` over `add -f` when notes come from multiple sources.**
 Overwriting with `add -f` silently discards whatever was already there. Use
@@ -199,13 +200,17 @@ teammates see nothing. The fix is always an explicit push of
 configured.** `git rebase` and `git commit --amend` (see the *commit*
 chapter) produce new objects with new hashes. Any note pointing to the old
 hash becomes orphaned — it still exists in the notes ref but is never shown
-because no commit carries that SHA-1 any more. Set `notes.rewrite.rebase`
-and `notes.rewriteRef` before this matters.
+because no commit carries that SHA-1 any more. Set `notes.rewriteRef`
+(which has no default) before this matters; `notes.rewrite.rebase` and
+`notes.rewrite.amend` default to `true` and need not be configured
+explicitly.
 
 **`add` aborts if a note already exists.** Invoking `git notes add` on an
-object that already has a note exits with an error unless you pass `-f`. Use
-`append` to accumulate notes, or `-f` to intentionally replace the existing
-one.
+object that already has a note exits with an error unless you pass `-f` — but
+only when content is supplied via `-m` or `-F`. When no message flag is given
+and Git opens the editor, the existing note is opened for editing instead of
+aborting (behaving like `git notes edit`). Use `append` to accumulate notes,
+or `-f` to intentionally replace the existing one.
 
 **Notes history grows without bound on active repositories.** Each `add`,
 `append`, `remove`, or `edit` creates a commit on the notes ref. After a

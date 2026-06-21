@@ -73,8 +73,7 @@ your branch:
 git range-diff @{u} @{1} @
 ```
 
-`@{u}` is the upstream (the merge base), `@{1}` is the branch as it was
-before the rebase (saved in the reflog), and `@` is the current HEAD.
+`@{u}` is the upstream tracking branch (e.g. `origin/main`), `@{1}` is the branch as it was before the rebase (saved in the reflog), and `@` is the current HEAD.
 
 Compare two explicit range references when reviewing a re-rolled patch series:
 

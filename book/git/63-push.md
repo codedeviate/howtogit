@@ -198,10 +198,11 @@ local reflog before the force push proceeds.
 `--tags` or `--follow-tags`. A newly created tag is invisible to collaborators
 until you push it explicitly.
 
-**The pre-push hook can abort a push.** The hook receives the remote name, URL,
-and list of refs being updated. If it exits non-zero the push is aborted — this
-is intentional. Use `--no-verify` only as a last resort and fix the underlying
-hook issue as soon as possible.
+**The pre-push hook can abort a push.** The hook is called with two arguments —
+the remote name and its URL. The list of refs being pushed is supplied on the
+hook's standard input, one ref per line. If it exits non-zero the push is
+aborted — this is intentional. Use `--no-verify` only as a last resort and fix
+the underlying hook issue as soon as possible.
 
 **Deleting a remote branch does not delete the local branch.** After
 `git push origin --delete feature/done`, your local `feature/done` still

@@ -174,9 +174,9 @@ compares against HEAD — your *local* last commit — not against
 commits behind the remote. Run `git fetch` first to update the remote-tracking
 refs; the `git status` output will then reflect the true ahead/behind gap.
 
-**Untracked directories are shown as a single entry.** By default (`-u normal`)
+**Untracked directories are shown as a single entry.** By default (`-unormal`)
 Git shows `new-directory/` rather than every file inside it. Run
-`git status -u all` to expand them. This is easy to miss when you copy an
+`git status -uall` to expand them. This is easy to miss when you copy an
 entire directory into your repo and see only one `??` line.
 
 **The two-column short format is easy to misread.** The first character is the

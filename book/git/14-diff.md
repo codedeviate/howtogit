@@ -162,10 +162,12 @@ real-world code.
 documentation or long configuration values show entire lines as changed when
 only one word moved. `--word-diff` makes the actual change obvious.
 
-**Enable rename detection globally.** If your project renames files
-regularly, add `diff.renames = true` to your `~/.gitconfig` so `-M` is
-always active. It prevents noise from delete + add pairs that are really just
-moves.
+**Enable copy detection globally if you also duplicate files.** `git diff`
+porcelain (and `git log`) detects renames by default (`diff.renames = true`
+out of the box). If your project also duplicates files and you want copies
+detected, add `diff.renames = copies` to your `~/.gitconfig`. To re-enable
+rename detection on a system or shared config that has explicitly set
+`diff.renames = false`, add `diff.renames = true`.
 
 ## Pitfalls & gotchas
 
@@ -182,11 +184,14 @@ difference between the two tips. The triple-dot `git diff A...B` means "from
 the common ancestor to B," which corresponds more closely to what
 `git log A..B` shows. This asymmetry trips up almost everyone at some point.
 
-**Renamed files appear as delete + add unless you ask for rename detection.**
-By default `git diff` does not detect renames. A file moved from `old.js` to
-`new.js` shows up as a deletion of `old.js` and a creation of `new.js`. Add
-`-M` to detect renames, or set `diff.renames = true` in your git config to
-enable it permanently.
+**Renamed files appear as delete + add in plumbing commands and on old or
+misconfigured installations.** `git diff` porcelain (and `git log`) detects
+renames by default — `diff.renames` is `true` out of the box. However,
+lower-level plumbing commands such as `git diff-files` and `git diff-index`
+do not perform rename detection regardless of config. If rename detection is
+unexpectedly absent (e.g. a shared config has set `diff.renames = false`),
+pass `-M` / `--find-renames` to force it for a single invocation, or restore
+the default with `diff.renames = true` in your `~/.gitconfig`.
 
 **Whitespace-only changes hide in plain diffs but break patches.** A diff
 that looks empty with `-w` may still apply differently than you expect.

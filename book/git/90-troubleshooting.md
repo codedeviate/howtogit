@@ -327,15 +327,18 @@ remain in the reflog for 90 days by default.
    git reset --hard 6530db9
    ```
 
-For a deleted branch, look at the branch-specific reflog:
+For a deleted branch, the branch-specific reflog is removed at deletion time,
+so use the HEAD reflog instead — it records every `git switch`/`git checkout`
+and will show the last commit the branch pointed to:
 
 ```sh
-git reflog show deleted-branch-name
+git reflog
+# find the SHA of the last commit on the deleted branch, then:
+git switch -c recovered-branch <sha>
 ```
 
-If the branch is already gone from the reflog listing, check `HEAD` — the
-commits will appear there as long as you haven't run `git gc` since the
-deletion.
+The commits remain reachable this way until the reflog expiry window passes
+(90 days by default) or `git gc`/`git reflog expire` explicitly prunes them.
 
 See the *reflog* chapter for the full `@{n}` and time-based syntax.
 

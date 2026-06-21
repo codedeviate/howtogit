@@ -58,7 +58,7 @@ except to use one of the diagnostic or maintenance subcommands.
 
 ### Enable rerere for a repository
 
-Rerere is off by default. Turn it on once per repository:
+Rerere is off by default for new repositories. Turn it on once per repository:
 
 ```sh
 git config rerere.enabled true
@@ -152,7 +152,7 @@ git merge --abort
 git rebase --abort
 ```
 
-`git rebase --abort` (and `git am --abort`) call `git rerere clear` automatically,
+`git rebase [--skip|--abort]` (and `git am [--skip|--abort]`) call `git rerere clear` automatically,
 discarding in-progress rerere metadata for the abandoned operation. You can also
 call it directly:
 
@@ -187,7 +187,7 @@ Configuration variables that control rerere behavior:
 
 | Variable | Default | Effect |
 |---|---|---|
-| `rerere.enabled` | `false` | Must be `true` to activate rerere |
+| `rerere.enabled` | `false (auto-enabled if .git/rr-cache exists)` | Must be `true` to activate rerere in a new repository |
 | `gc.rerereUnresolved` | 15 days | Age at which unresolved records are pruned by `gc` |
 | `gc.rerereResolved` | 60 days | Age at which resolved records are pruned by `gc` |
 
@@ -222,8 +222,10 @@ the *gc* and *maintenance* chapters for integration points.
 
 ## Pitfalls & gotchas
 
-**Rerere is disabled by default.** The most common reason rerere "doesn't work"
-is that `rerere.enabled` was never set. Confirm it is active:
+**Rerere is disabled by default in new repositories.** The most common reason rerere "doesn't work"
+is that `rerere.enabled` was never set (Git auto-enables it in repos where it was previously used,
+i.e. where `.git/rr-cache/` already exists, but you must set it explicitly in a fresh repository).
+Confirm it is active:
 
 ```sh
 git config rerere.enabled

@@ -86,7 +86,7 @@ git cherry-pick --edit a3f9c1b
 | Option | What it does | When to use it |
 |--------|--------------|----------------|
 | `-e`, `--edit` | Open the editor to modify the commit message before committing | Adapting an upstream message to a backport context |
-| `-x` | Append `(cherry picked from commit ...)` to the commit message | Backporting between public branches so the provenance is traceable |
+| `-x` | Append `(cherry picked from commit ...)` to the commit message (only when the pick applies cleanly; the line is not added if you resolve conflicts manually) | Backporting between public branches so the provenance is traceable |
 | `-n`, `--no-commit` | Apply changes to the index and working tree without creating a commit | Combining multiple picks into one commit, or inspecting before committing |
 | `-m <n>`, `--mainline <n>` | Specify which parent (1-based) is the mainline when picking a merge commit | Required when the commit to pick is a merge commit |
 | `-s`, `--signoff` | Append a `Signed-off-by` trailer to the commit message | Projects requiring DCO sign-off |

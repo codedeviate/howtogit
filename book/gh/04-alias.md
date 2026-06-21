@@ -178,9 +178,13 @@ without `--clobber`. Add the flag to make your bootstrap script idempotent.
 
 ## Pitfalls & gotchas
 
-**A plain alias expansion cannot start with `!`.** The exclamation mark is
-the sentinel that marks a shell alias. If your expansion happens to start
-with `!` (e.g., a negated jq expression), use `--shell` instead.
+**Any expansion that starts with `!` is treated as a shell alias — identical
+to passing `--shell`.** There is no way to keep a leading `!` literal in a
+plain alias; `--shell` is not a workaround, it produces exactly the same
+behaviour. If you genuinely need a leading `!` character in your expansion
+(e.g., a negated jq filter), restructure the command so the expansion does
+not begin with `!` — for example, reorder the jq expression or wrap it in a
+helper script.
 
 **`$1` in a plain alias is handled by `gh`, not by `sh`.** Quoting rules
 differ from shell: inside a plain alias expansion, `"$1"` works as a

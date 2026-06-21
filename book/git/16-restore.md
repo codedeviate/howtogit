@@ -164,7 +164,7 @@ replayed — the opposite of a plain merge. If a resolution looks backwards,
 check which operation is in progress.
 
 **`--source` with `--no-overlay` (the default) can delete files.** If the
-source tree does not contain a path that currently exists in the working tree,
+source tree does not contain a tracked file that currently exists in the working tree,
 Git removes it. Pass `--overlay` to suppress deletions and only update files
 that exist in the source.
 

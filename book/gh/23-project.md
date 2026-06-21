@@ -300,14 +300,20 @@ Note: `mark-template` requires an org login, not a personal account.
 | `--format json` | Emit JSON instead of a table | Scripting; piping to `jq` |
 | `-q` / `--jq <expr>` | Filter JSON output with a jq expression | Extract a single field inline |
 | `-t` / `--template <tmpl>` | Format JSON with a Go template | Custom tabular output |
-| `-L` / `--limit <n>` | Maximum records to fetch (default 30) | Large projects with many items/fields |
-| `-w` / `--web` | Open in browser | Quick visual inspection |
 
 ### list
 
 | Flag | What it does | When to use it |
 |------|--------------|----------------|
 | `--closed` | Include closed projects | Auditing historical projects |
+| `-L` / `--limit <n>` | Maximum number of projects to fetch (default 30) | Orgs with many projects |
+| `-w` / `--web` | Open the projects list in the browser | Quick visual inspection |
+
+### view
+
+| Flag | What it does | When to use it |
+|------|--------------|----------------|
+| `-w` / `--web` | Open the project in the browser | Quick visual inspection |
 
 ### edit
 
@@ -326,6 +332,12 @@ Note: `mark-template` requires an org login, not a personal account.
 | `--target-owner` | Owner of the new copy | Required |
 | `--drafts` | Also copy draft issue items | When drafts carry planning value |
 
+### field-list
+
+| Flag | What it does | When to use it |
+|------|--------------|----------------|
+| `-L` / `--limit <n>` | Maximum number of fields to fetch (default 30) | Projects with many custom fields |
+
 ### field-create
 
 | Flag | What it does | When to use it |
@@ -338,6 +350,7 @@ Note: `mark-template` requires an org login, not a personal account.
 | Flag | What it does | When to use it |
 |------|--------------|----------------|
 | `--query <filter>` | Projects filter syntax (assignee, label, status, etc.) | Narrowing large backlogs |
+| `-L` / `--limit <n>` | Maximum number of items to fetch (default 30) | Large backlogs |
 
 ### item-edit
 

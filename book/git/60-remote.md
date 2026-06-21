@@ -229,16 +229,18 @@ refs. Those branches disappear from your local view. The data still exists
 on the actual server; re-add the remote and fetch to restore the
 remote-tracking refs.
 
-**Renaming `origin` breaks default push/pull for existing local branches.**
-Local branches are configured with `branch.<name>.remote = origin`. After a
-rename, that value is stale. Update each affected branch:
+**`git remote rename` does not break existing local branches.** The command
+automatically updates every `branch.<name>.remote` entry and all
+remote-tracking refs that referenced the old name, so default push/pull
+keeps working with no manual `--set-upstream-to` step:
 
 ```sh
-git remote rename origin github
-git branch --set-upstream-to=github/main main
+git remote rename origin github   # branch.main.remote is rewritten to github automatically
 ```
 
-For repositories with many local branches, re-cloning is often simpler.
+What is *not* updated is anything outside Git's own config: CI pipelines,
+deployment scripts, or other tools that hard-code the old remote name in
+their own configuration files.
 
 **`git remote show` makes a live network call.** It queries the remote
 using `git ls-remote`. On a slow or offline connection this hangs. Pass

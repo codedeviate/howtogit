@@ -139,9 +139,10 @@ becomes meaningless once you have several entries. A two-second description
 archaeology with `git stash show` later.
 
 **Prefer `apply` over `pop` when uncertain.** `pop` removes the stash entry
-after applying it. If you hit conflicts, the entry is gone. Use `apply` to
-keep the safety net intact, inspect the result, then `drop` manually once you
-are satisfied.
+as soon as it applies cleanly, leaving no safety net. (Note: if `pop` hits
+conflicts the entry is NOT removed — you resolve and `git stash drop`
+manually.) Use `apply` to keep the entry regardless of outcome, inspect the
+result, then `drop` manually once you are satisfied.
 
 **Keep the stash stack short.** Stashes are not branches. They do not track
 diverging work, have no relationship to each other, and fall off the reflog

@@ -229,13 +229,12 @@ git pull --autostash --rebase
 ```
 
 ```text
-Created autostash: stash@{0}
-HEAD is now at f3a9c11 Start draft of README section
+Created autostash: cd487f4
 From https://github.com/example/docs
  * branch            main -> FETCH_HEAD
    f3a9c11..a2d4f90  main -> origin/main
-Successfully rebased and updated refs/heads/main.
 Applied autostash.
+Successfully rebased and updated refs/heads/main.
 ```
 
 Your uncommitted changes are back in the working tree, layered on top of the
