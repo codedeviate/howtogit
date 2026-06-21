@@ -27,15 +27,17 @@ audience — beginner-friendly intros, practitioner-level depth per command.
   (see [`STYLE.md`](STYLE.md)), so the books are easy to navigate.
 - 🖨️ **Book-quality PDFs** — A4, page-numbered, with a cover page and a linkable
   table of contents; sans-serif body text with monospaced, shaded code blocks.
-- 📦 **Prebuilt and ready** — the rendered PDFs are committed, or rebuild from
-  source with a single `make`.
+- 📦 **Prebuilt and ready** — download the rendered PDFs from the latest
+  [release](https://github.com/codedeviate/howtogit/releases/latest), or rebuild
+  from source with a single `make`.
 
 ## Read the books
 
-Grab the prebuilt PDFs directly — no build required:
+Download the latest PDFs — no build required (these links always resolve to the
+newest [release](https://github.com/codedeviate/howtogit/releases/latest)):
 
-- **[`dist/git.pdf`](dist/git.pdf)** — the git book (356 pp)
-- **[`dist/gh.pdf`](dist/gh.pdf)** — the gh book (194 pp)
+- **[git.pdf](https://github.com/codedeviate/howtogit/releases/latest/download/git.pdf)** — the git book (356 pp)
+- **[gh.pdf](https://github.com/codedeviate/howtogit/releases/latest/download/gh.pdf)** — the gh book (194 pp)
 
 ## What's inside
 
@@ -112,7 +114,7 @@ howtogit/
 │   ├── build-book.sh         # Assemble a book's chapters and render the PDF via recon
 │   ├── lint-chapters.sh      # Enforce one H1 per chapter (fence-aware)
 │   └── make-stubs.sh         # Create buildable stubs for any unwritten chapters
-└── dist/                     # Rendered PDFs (committed: git.pdf, gh.pdf)
+└── dist/                     # Build output (gitignored; PDFs published as release assets)
 ```
 
 ## License

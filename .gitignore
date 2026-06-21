@@ -1,6 +1,5 @@
-# Ignore generated build artifacts, but keep the published PDFs tracked.
-dist/*
-!dist/git.pdf
-!dist/gh.pdf
+# Build artifacts. The rendered PDFs are published as GitHub Release assets,
+# not committed (see the README "Read the books" section).
+dist/
 .DS_Store
 *.swp
