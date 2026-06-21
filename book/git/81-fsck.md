@@ -98,7 +98,7 @@ git fsck --no-reflogs
 | `--lost-found` | Write dangling objects to `.git/lost-found/` | Recover content from dropped commits or stashes |
 | `--name-objects` | Include a rev-parse-compatible name alongside each SHA-1 | Make unreachable output human-readable |
 | `--connectivity-only` | Check only that referenced objects exist; skip deep content validation | Faster check on large repos; will miss blob corruption |
-| `--no-full` | Restrict check to the main object directory only | Exclude alternate object pools (and their pack subdirectories) from the walk |
+| `--no-full` | Restrict check to loose objects in the main object directory only | Limit the check to loose objects in `$GIT_DIR/objects`; skips the main repo's pack files (`$GIT_DIR/objects/pack`) and alternate object pools |
 | `--strict` | Catch file modes with the group-write bit set, created by old Git versions | New projects; avoid on established repos with legacy objects |
 | `--no-reflogs` | Exclude reflogs from the set of reachability roots | Find commits that have fallen out of all current refs even if still referenced by a reflog |
 | `--root` | Report root commit nodes | Auditing repos that should have exactly one root |

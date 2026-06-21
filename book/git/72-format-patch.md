@@ -126,7 +126,7 @@ git format-patch --stdout origin/main | git am -3
 | `--suffix=.<sfx>` | Change the filename extension from `.patch` | Some review tools or mail filters expect `.txt` |
 | `-s` / `--signoff` | Add a `Signed-off-by:` trailer using your committer identity | Projects requiring DCO sign-off |
 | `-k` / `--keep-subject` | Do not strip or add `[PATCH]` from the first line of the commit message | Preserving custom subject prefixes already in the message |
-| `--binary` | Include binary diffs; implies `--full-index` automatically | Patches that add images or other binary assets |
+| `--binary` | Include binary diffs that can be applied with `git-apply`; combine with `--full-index` for fully-applicable patches | Patches that add images or other binary assets |
 | `--root` | Treat the revision argument as a range even when it is a single commit | Export everything from the very first commit |
 | `-q` / `--quiet` | Suppress the list of generated filenames on stdout | Scripting |
 

@@ -264,10 +264,12 @@ reflog` to find those.
 surprising jumps in timestamps. Older commits may appear above newer ones to
 keep branch lines readable. This is correct behavior, not a bug.
 
-**`--since` and `--until` use the author date, not the committer date.**
-Rebased commits keep their original author date. A commit written last year
-and rebased today will still appear in `--since="last year"` output, even
-though it was rebased recently.
+**`--since` and `--until` filter by the committer date, not the author date.**
+Rebasing rewrites the committer date, so a commit you wrote long ago but
+rebased today gets a fresh committer date and WILL appear in recent `--since`
+output. Conversely, an old commit that was never rebased keeps its old
+committer date and is excluded by `--since="1 year ago"`, even if you
+expected to find it.
 
 **Custom `--pretty=format:` does not add a trailing newline; `tformat:` does.**
 If you pipe `--pretty=format:%h` output to another tool and the last line is

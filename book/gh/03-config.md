@@ -159,10 +159,7 @@ freshly-cloned dotfiles installation applied correctly.
 
 ## Pitfalls & gotchas
 
-**`gh config set` does not validate values beyond basic types.** Setting
-`git_protocol` to `ftp` or `prompt` to `yes` will be silently accepted
-and written — but the next `gh` command will either error or fall back to
-the default. Always use the exact values listed in `gh config --help`.
+**`gh config set` validates values for keys that have a fixed set of allowed options (such as `git_protocol`, `prompt`, and the other enabled/disabled keys).** Supplying an invalid value causes an immediate error and nothing is written — e.g. `gh config set git_protocol ftp` exits non-zero with `failed to set "git_protocol" to "ftp": valid values are 'https', 'ssh'`. Keys that accept free-form strings (like `editor`, `pager`, and `browser`) are not validated for executability — those problems surface only when gh tries to launch them.
 
 **Global vs. per-host resolution can surprise you.** Running `gh config
 get git_protocol` returns the *global* value, even if a per-host override

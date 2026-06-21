@@ -206,7 +206,7 @@ wizard instead.
 | `-L` / `--limit <n>` | Maximum results to return (default 30) | Browsing beyond the top 30 |
 | `--owner <org>` | Filter by repository owner | Finding all extensions from a trusted org |
 | `--sort <field>` | Sort by `forks`, `help-wanted-issues`, `stars`, or `updated` | Surface recently-maintained extensions |
-| `--order <asc\|desc>` | Sort direction (default `desc`) | Find oldest or least-starred first |
+| `--order <asc\|desc>` | Sort direction (default `desc`); ignored unless `--sort` is also specified | Find oldest or least-starred first |
 | `--license <type>` | Filter by SPDX license identifier | Compliance requirements |
 | `--json <fields>` | Output JSON with the specified fields | Scripting |
 | `-q` / `--jq <expr>` | Filter JSON output with a jq expression | Inline scripting |

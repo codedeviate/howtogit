@@ -42,7 +42,7 @@ in the global `maintenance.repo` list without touching the OS scheduler.
 ## Synopsis
 
 ```text
-git maintenance run [--auto] [--schedule] [--quiet] [--task=<task>...]
+git maintenance run [--auto] [--schedule=<frequency>] [--quiet] [--task=<task>...]
 git maintenance start [--scheduler=auto|crontab|systemd-timer|launchctl|schtasks]
 git maintenance stop
 git maintenance register [--config-file=<file>]
@@ -101,7 +101,7 @@ git config --global --list | grep maintenance
 |--------|--------------|----------------|
 | `--task=<task>` | Run only the named task(s), in that order | Target one area without touching the rest |
 | `--auto` | Run tasks only when their threshold is exceeded (e.g. loose-object count, pack-file count) | Light-touch check after commands that add data |
-| `--schedule[=<frequency>]` | Run tasks only if their scheduled interval has elapsed since last run | Used internally by the OS scheduler (e.g. `--schedule=hourly`); also accepts bare `--schedule` |
+| `--schedule=<frequency>` | Run tasks only if their scheduled interval has elapsed since last run; `<frequency>` must be `hourly`, `daily`, or `weekly` | Used internally by the OS scheduler (e.g. `--schedule=hourly`); the value is required — bare `--schedule` is rejected |
 | `--quiet` | Suppress progress and informational output on stderr | Cron jobs and scripts where noise pollutes logs |
 | `--scheduler=<value>` | Choose the OS scheduler backend: `auto`, `crontab`, `systemd-timer`, `launchctl`, `schtasks` | Force a specific scheduler when `auto` picks the wrong one |
 

@@ -189,9 +189,11 @@ your clock was wrong or you changed time zones, the entry you get may not
 be what you expect. Verify with `--date=iso` when precision matters.
 
 **Reflog entries are not immutable.** Running `git reflog expire
---expire=all --all` or `git reflog drop --all` permanently removes entries.
-After `git gc` runs (automatically or on demand), entries past the expiry
-window are gone and the associated loose objects may be garbage-collected.
+--expire=all --all` prunes all entries from every reflog; `git reflog drop
+--all` goes further and removes the reflogs entirely (the log files, not
+just individual entries). After `git gc` runs (automatically or on demand),
+entries past the expiry window are gone and the associated loose objects may
+be garbage-collected.
 
 **Rebasing creates many entries quickly.** An interactive rebase of a
 twenty-commit branch can add dozens of entries to the HEAD reflog. If

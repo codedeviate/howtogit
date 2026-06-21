@@ -163,7 +163,7 @@ conflict markers before reaching for `--ours`/`--theirs`.
 `-f` will overwrite modified tracked files and delete untracked files that are
 in the way. There is no undo. Check `git status` before using `-f`.
 
-**Path-mode checkout does not stage the change.** Running
+**Path-mode checkout with a tree-ish stages the change automatically.** Running
 `git checkout HEAD~1 -- src/config.js` writes the old version into the working
 tree and into the index simultaneously. The file shows up in `git status` as
 "Changes to be committed". This surprises people who expect only the working
@@ -182,8 +182,7 @@ garbage collector will eventually delete them. Save them with a branch or tag
 before navigating away.
 
 **Argument ambiguity between branches and files.** If a file and a branch
-share a name, `git checkout <name>` switches to the branch. Git warns about
-this situation but does not error. Always use `--` when operating on paths to
+share a name, `git checkout <name>` switches to the branch. Git silently prefers the branch interpretation without any warning. Always use `--` when operating on paths to
 eliminate the ambiguity.
 
 ## Worked examples
