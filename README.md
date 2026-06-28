@@ -19,7 +19,7 @@ audience — beginner-friendly intros, practitioner-level depth per command.
 
 ## Highlights
 
-- 📚 **Two book-length references** — a **356-page** git book (50+ commands) and
+- 📚 **Two book-length references** — a **358-page** git book (50+ commands) and
   a **194-page** gh book (25+ command groups).
 - ✅ **Accuracy-checked** — every flag and option was verified against the real
   `git` / `gh --help`, not written from memory.
@@ -36,7 +36,7 @@ audience — beginner-friendly intros, practitioner-level depth per command.
 Download the latest PDFs — no build required (these links always resolve to the
 newest [release](https://github.com/codedeviate/howtogit/releases/latest)):
 
-- **[git.pdf](https://github.com/codedeviate/howtogit/releases/latest/download/git.pdf)** — the git book (356 pp)
+- **[git.pdf](https://github.com/codedeviate/howtogit/releases/latest/download/git.pdf)** — the git book (358 pp)
 - **[gh.pdf](https://github.com/codedeviate/howtogit/releases/latest/download/gh.pdf)** — the gh book (194 pp)
 
 ## What's inside
