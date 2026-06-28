@@ -114,6 +114,9 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org):
 A `!` after the type or a `BREAKING CHANGE:` footer marks a major bump (e.g. a
 restructured book or a breaking change to the build).
 
+Notable changes per release are recorded in [`CHANGELOG.md`](CHANGELOG.md)
+([Keep a Changelog](https://keepachangelog.com) format).
+
 ## Repository layout
 
 ```
