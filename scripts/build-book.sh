@@ -5,7 +5,6 @@
 set -euo pipefail
 
 BOOK="${1:-}"
-VERSION="Edition 2026.1"
 DATE="2026"
 case "$BOOK" in
   git)
@@ -22,6 +21,16 @@ case "$BOOK" in
 esac
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+# Cover edition tracks the latest git tag (semver, e.g. v1.1.0 -> "Edition 1.1.0"),
+# so it never goes stale. Falls back to a dev label outside a tagged checkout.
+TAG="$(git -C "$ROOT" describe --tags --abbrev=0 2>/dev/null || true)"
+if [ -n "$TAG" ]; then
+  VERSION="Edition ${TAG#v}"
+else
+  VERSION="Edition (dev build)"
+fi
+
 SRC_DIR="$ROOT/book/$BOOK"
 ORDER="$SRC_DIR/order.txt"
 DIST="$ROOT/dist"
