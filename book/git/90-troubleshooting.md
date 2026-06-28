@@ -234,6 +234,95 @@ starting work. Many teams configure their prompt to show the current branch.
 
 ---
 
+## A pull request pulls in commits from another branch (stacked-branch trap)
+
+**What it means.** You opened a PR for a feature branch, but its "Commits"
+tab — or a local `git log` — shows more commits than you actually made on
+that branch. Merging the PR would bring in work from a *different*,
+not-yet-merged branch, not just your own changes.
+
+**Why it happens.** You created the branch on top of another feature branch
+instead of the intended base. Say you cut `one` from `develop`, added three
+commits, and opened a PR `one → develop` without merging it. Then you
+created `two` — but accidentally based it on `one` rather than `develop` —
+added two commits, and opened `two → develop`:
+
+```text
+                d---e   two   (your two commits)
+               /
+      a---b---c   one   (open PR, not yet merged)
+     /
+o---o   develop
+```
+
+A merge integrates **everything reachable from the source branch that is not
+already in the target** — git works in commit ranges, by reachability, not
+by "the commits I added while on this branch." Because `two` descends from
+`one`, and none of `one`'s commits (`a`, `b`, `c`) are in `develop` yet,
+merging `two → develop` would replay all five commits (`a` through `e`), not
+just `d` and `e`. The PR's commit list and diff are the early warning: they
+show all five.
+
+**How to get out.**
+
+1. Confirm what a merge would actually include. This lists every commit
+   reachable from `two` but not yet in `develop`:
+
+   ```sh
+   git log --oneline develop..two
+   # shows a, b, c, d, e — five commits, not two
+   ```
+
+   The same information is on the PR's "Commits" tab, or from the CLI:
+
+   ```sh
+   gh pr view two       # summary, including the commit count
+   gh pr diff two       # the full diff that would be merged
+   ```
+
+2. Rebase `two` onto `develop` to drop its dependency on `one`, carrying
+   only the commits unique to `two`:
+
+   ```sh
+   git switch two
+   git rebase --onto develop one two
+   git push --force-with-lease
+   ```
+
+   Read the rebase as "move the commits, change the base": `--onto develop`
+   is the new base, `one` is the old base (the cutoff — commits up to and
+   including `one`'s tip are *not* replayed), and `two` is the branch being
+   moved. Git replays only the `one..two` range (`d`, `e`) on top of
+   `develop`. After the force-push, the PR contains exactly those two
+   commits. (This is the same transplant shown in the *rebase* chapter's
+   "Transplanting a topic branch with `--onto`" example.)
+
+3. **Alternative — change the merge order instead of rebasing.** If `one`'s
+   PR is sound, merge it into `develop` first. Once `a`, `b`, `c` are in
+   `develop`, the `two → develop` PR naturally shrinks to just `d` and `e`,
+   because those commits are now the only ones reachable from `two` that
+   `develop` lacks. No rebase or force-push needed.
+
+Either route is correct. Merge **order** changes only what *appears* in each
+PR at a given moment; if both branches eventually merge, the end state of
+`develop` is identical — the same five commits land regardless of which path
+you take.
+
+**How to avoid it.** Branch from the intended base explicitly, and name it in
+the command so there is no ambiguity:
+
+```sh
+git switch -c two develop     # base 'two' on develop, not on the current branch
+```
+
+`git switch -c <name>` without a starting point branches from wherever HEAD
+happens to be — which is how you end up stacked on the wrong branch. Before
+merging any PR, glance at its "Commits" tab (or run
+`git log --oneline <base>..<branch>`); a commit count higher than you expect
+is the tell.
+
+---
+
 ## Undo the last commit — soft vs mixed vs hard reset vs revert
 
 **What it means.** You want to un-do a commit, but the right tool depends on
